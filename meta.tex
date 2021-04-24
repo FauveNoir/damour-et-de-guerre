@@ -1,0 +1,31 @@
+% vim: syntax=tex
+%
+% ./meta.tex
+%
+%---------------------------------------------------------------
+%
+% Ce fichier rassemble diverses commandes sur la déffinition de diverses variables générales.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\title{D’amour et de guerre}
+\author{Fauve}
+\date{\DTMdisplaydate{2021}{4}{15}{}}
+%\licence{}
+%\genre{Comédie}
+\fauveLittCode{damouretdeguerre}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                       Spécificité des PDFs                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeatletter
+  \hypersetup{
+    pdftitle={\@title},   % Titre du document.
+                          % Informations apparaissant dans
+    pdfauthor={\@author}, % dans les informations du document
+    pdfsubject={}         % sous le lecteur de PDFs.
+  }
+\makeatother

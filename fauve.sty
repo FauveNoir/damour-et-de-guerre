@@ -1,0 +1,648 @@
+%% Informations générales
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{fauve}[2015/09/02]
+
+%% Chargement des extensions primordiales.
+\RequirePackage{fontspec} % Utilisation de XeTeX.
+%\RequirePackage[latin,russian,greek,french,francais]{babel} % Le Français est la langue principale.
+\RequirePackage{polyglossia}
+\RequirePackage{xunicode}
+\RequirePackage{fontenc}
+\RequirePackage[babel=true,maxlevel=3]{csquotes} % csquotes va utiliser la langue définie dans babel et augmenter la limitation d’imbrication à 3 (LaTeX appliqué aux sciences humaines, p.46).
+\RequirePackage{verse}
+\RequirePackage[unicode=true,colorlinks=true,urlcolor=magenta]{hyperref}
+\RequirePackage{url}
+\RequirePackage{paralist}
+%\RequirePackage{bigfoot}
+\RequirePackage{graphicx}
+\RequirePackage{caption}
+\RequirePackage{subcaption}
+%\RequirePackage{arabtex}
+%\RequirePackage[load-configurations = abbreviations]{siunitx}
+\RequirePackage[nonumberlist,nopostdot,toc]{glossaries}
+\RequirePackage{lettrine}
+\RequirePackage{multicol}
+\RequirePackage{geometry}
+\RequirePackage{dramatist}
+\RequirePackage{etoolbox}
+\RequirePackage{enumitem}
+\RequirePackage{epigraph}
+\RequirePackage{manyfoot}
+\RequirePackage{subscript}
+%\RequirePackage{titling}
+%\RequirePackage{libertine}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{xspace} % Le paquet xspace sert essentiellement à la redéffinition de la page de garde.
+\RequirePackage{ifthen} % Introduction des condition pour tester la valeure restante de la page nécéssaire à l’insertion d’un cul-de-lampe (Com).
+\RequirePackage{calc}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage[TOB,indexTOB]{bibleref-french} % Références bibliques à la façon de la TOB, tel que décrit dans /XeLaTeX appliqué aux sciences humaines/ 19.1.2 (p. 158)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{ifthen} % Introduction des condition pour tester les options passées à \ihi.
+\RequirePackage{xstring}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage[backend=bibtex,citestyle=verbose-trad2,bibstyle=alphabetic]{biblatex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage[mackeys=symbols]{menukeys}
+\RequirePackage{qrcode} % Imprime des qrcodes grâce à `\qrcode{}` essentiellement utilisé avec l’option `littera`.
+%\RequirePackage[texcoord]{eso-pic} % Ce paquet permet d’insérer le qrcode à un endroit fixe, avec, pour origine du repère, le coint haut gauche.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Traitement des options d’appel                                       #
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DeclareOption{monochrome}{\def\ismonochrome{1}}
+\DeclareOption{colored}{}
+
+\DeclareOption{offensive}{\def\isoffensive{1}}
+\DeclareOption{nooffensive}{}
+\DeclareOption{printable}{\def\isprintable{1}}
+\DeclareOption{culdelampe}{\def\culdelampwanted{1}}
+\DeclareOption{specialtypo}{\def\specialtypo{1}}
+\DeclareOption{condensed}{%
+  \geometry{hmargin=1cm,vmargin=2cm}
+  \AtBeginDocument{\begin{multicols}{2}}
+  \AtEndDocument{\end{multicols}}
+}
+
+\DeclareOption{littera}%
+{%
+  % Qrcode au coint haut gauche
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  % https://tex.stackexchange.com/questions/24663/how-to-place-a-floating-text-box-at-a-specified-location-in-page-coordinates
+
+  \newcommand{\placetextbox}[3]{% \placetextbox{<horizontal pos>}{<vertical pos>}{<stuff>}
+    \setbox0=\hbox{#3}% Put <stuff> in a box
+    \AddToShipoutPictureFG*{% Add <stuff> to current page foreground
+      \put(\LenToUnit{#1mm},\LenToUnit{#2mm}){\vtop{{\null}\makebox[0pt][c]{#3}}}%
+    }%
+  }
+
+  \newcommand\fauveLittCode[1]{%
+    \newcommand\fauveLittCodeContent{#1}
+    \newcommand\fauveLittLink{http://taniere.info/littera/opus/#1}
+    \@ifclassloaded{article}%
+    {
+      \placeLittQRCode{}
+    }
+  }
+
+  \newcommand\placeLittQRCode%
+  {%
+    \ifdefined\fauveLittLink
+      \ifthenelse{ \equal{\fauveLittLink}{} }%
+      {%
+      }%
+      {%
+        \AtBeginDocument{\placetextbox{15}{-4.6}{\qrcode[nolinks]{\fauveLittLink}}}
+      }
+    \fi
+  }
+}
+
+\ProcessOptions
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setmainfont{CMU Serif}
+
+% Déffinition de la locale à FR pour siunitx.
+%\sisetup{locale = FR,
+%detect-all,
+%}
+
+% Déffinitions de Polyglossia
+\setdefaultlanguage{french}
+%\setotherlanguages{greek,russian,arabic}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Cul de lampe adaptable à la hauteure de l’espace restant.            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% la commande `\culdelamp` n’affiche de cul-de-lampe que si la longeure restante de la page équivaut à plus de  72pt (environ trois lignes). Le cul de lampe fait une hauteure équivalent à 60% celle de l’espace restant, plafonée à 50pt. Il est toujours affiché au millieur de l’espace restant.
+\newcommand\culdelamp%
+{%
+  \newlength\sizeOfCuldelamp%                     % Longeure qui sera utilisée à la fin pour le cul-de-lampe
+  %\hskip 0pt\newlength\mydim%                     % Capture de la longeure restante de la page.
+  \newlength\mydim%                     % Capture de la longeure restante de la page.
+
+  \mydim=\dimexpr\pagegoal-\pagetotal-\baselineskip\relax
+  \ifthenelse{ \lengthtest{ \mydim > 72pt} }% Premier test : Vérifie que l’espace restant est supérieur à 72pt.
+  {                                              % Si oui (espace restant > 72pt) alors on affiche un cul-de-lampe.
+
+
+    \ifthenelse{ \lengthtest{ \mydim > 60pt } }% Test que l’espace restant est supérieur à 60pt. Autrement dit, inclu dans [60,72]pt.
+    {%
+      \sizeOfCuldelamp=50pt                       % Au cas où l’espace restant est supérieur à 60pt alors la hauteur du cul-de-lampe est fixée à 50pt.
+    }%
+    {%
+      \sizeOfCuldelamp={0.6*\mydim}% Dans les cas où la valeure est inférieur à 60pt, alors le cul-de-lampe est haut de 60% de l’espace restant.
+    }%
+    \vfill%                                       % Pression verticale depuis le haut qui, compensée par une autre depuis le bas, affiche le cul-de lampe au millieur de l’espace restant.
+    \nopagebreak[4]%                              % Nopagebreak assure que l’introduction du cul-de-lampe n’entrainera pas la création d’une page suplémentaire innutile où il sera de surcroit un orphelin.
+    \begin{center}%
+      \nopagebreak[4]%
+      \vfill%
+      \nopagebreak[4]%
+%
+%
+      {%
+        \fontsize{\sizeOfCuldelamp}{1em}\selectfont% % Choix de la longeure en fonction de \sizeOfCuldelamp déffinit plus haut.
+        {\setromanfont{DejaVu Sans}{♠}}%            % Affichage d’un pique de carte à jouer dans la police DejaVu Sans car CMU ne prends pas en charge ce carctère.
+      }%
+%
+      \vfill%
+    \end{center}%
+%
+    \vfill%                                       % Pression verticale depuis le bas qui, compensée par une autre depuis le haut, affiche le cul-de lampe au millieur de l’espace restant.
+  }%
+%
+%
+  {} % Si l’éspace est inférieur à 72pt, alors un pique de la même taille que le texte est placé à la fin de la dernière phrase.
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Enfin, on déffinit la commande qui *force* l’utilisation du cul-de-lampe en fin de document.
+% Ne pas utiliser dirrectement. Préferez-y la suivante.
+\newcommand\culdelampeneeded%
+{\AtEndDocument{\culdelamp{}}}
+
+
+% Cette commande, plus douce que la precédente n’inclue le cul-de-lampe que si le projet est de classe `article`.
+\ifdefined\culdelampwanted
+  \@ifclassloaded{article}%
+  {\culdelampeneeded}%
+  {}
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Page complettement vierge avant les pages de début de chapitre       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\makeatletter
+\def\cleardoublepage{\clearpage \if@twoside \ifodd \c@page \else \thispagestyle{empty}\hbox {}\newpage \if@twocolumn \hbox {}\newpage \fi \fi \fi}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Typographie personnelle                                              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Inclusion de la page éxplicitant les usages typographiques personnels tels que déffinits dans http://tan/littera/idiolecte/#Typographie
+% Ici, chaque particularité n’est introduite et détaillée que si elle a été utilisée au moins une fois dans le projet.
+\newcommand\printfauvetypodeffintion{
+
+  % Tester si au moins une seule spécificité typographique fut utilisée.
+  \ifdefined\cautionsymbolused
+    \def\isspecialtypoused{1}
+  \fi
+
+  \ifdefined\ironicalsymbolused
+    \def\isspecialtypoused{1}
+  \fi
+
+  \ifdefined\castianquestion
+    \def\isspecialtypoused{1}
+  \fi
+
+  \ifdefined\castianexclamation
+    \def\isspecialtypoused{1}
+  \fi
+
+  \ifdefined\constructsymbolused
+    \def\isspecialtypoused{1}
+  \fi
+
+  \ifdefined\oxfordcomaused
+    \def\isspecialtypoused{1}
+  \fi
+
+  \ifdefined\reversedarabic
+    \def\isspecialtypoused{1}
+  \fi
+
+  % Si au moins une seule spécificité typographique fut utilisée, comme testé préalablement, ALORS afficher les conventions typographiques.
+  % Seules les particularités typographiques utilisées dans le projet seront affichées.
+  \ifdefined\isspecialtypoused
+    \chapter*{Conventions typographiques}
+
+    \begin{description}
+      \ifdefined\cautionsymbolused
+        \item[\fallback{⚔} (\texttt{U+2694} “CROSSED SWORDS”)] Délimite un passage sujet à caution ou ouvert au débat voir même une simple suggestion.
+      \fi
+
+      \ifdefined\ironicalsymbolused
+        \item[\ironie (punctus percontativus)] Est un point d’ironie qui comme son nom ne l’indique pas clos les phrases ironiques\ironie Il peut même servir à clore les questions rhétoriques.
+      \fi
+
+      \ifdefined\castianquestion
+        \item[¿ … ?] J’ai adopter la ponctuation castillane de l’interrogation, pour bien délimiter la question qui donc commence par \enquote{¿} et est clos par \enquote{?} avec des espaces insécables vers l'intérieur selon l’usage en français.
+      \fi
+
+      \ifdefined\castianexclamation
+        \item[¡ … !] Même la typographie de l'exclamation est emprunté au castillan avec les même procédés de transposition de l'espace insécable.
+      \fi
+
+      \ifdefined\constructsymbolused
+        \item[\fallback{⛏}] Marque un passage \enquote{En construction}, en attente d’être rédigé.
+      \fi
+
+      \ifdefined\oxfordcomaused
+        \item[! a \& ? a] Virtualisation de la virgule exclamative et de la virgule interrogative pour contourner \href{http://fr.wikipedia.org/wiki/Virgule_d\%27exclamation}{le brevet dont elles font l’objet} et ce affin de faire respirer certaines de mes exclamations et de mes interrogations comme des virgules. Les \enquote{virgules} d'exclamation et d’interrogation se distinguent de leur points homologues par la casse minuscule des caractères les suivant.
+      \fi
+
+      \ifdefined\reversedarabic
+        \item[\arabrevert{n.s bAl`rbyh}] Une dernière particularité de mes usages scripturaux consistent, lorsque c’est techniquement possible, en l’inversion du sens d’écriture d’un bref passage d’une langue s’écrivant dans le sens inverse à la langue principale du texte, et ce, afin de ne pas entraver le sens naturel de la lecture. Dès lors, les incursions de mots arabes ci-dessus doivent se lire de gauche à droite, comme en français, non l’inverse.
+      \fi
+    \end{description}
+  \fi
+}
+
+
+% Dans les autres cas, aucune modification n’est faite.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                           Nom civil                                  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Macro automatisant l’inclusion des informations personnelles de Fauve.
+
+\makeatletter % https://tex.stackexchange.com/questions/26870/check-if-a-string-contains-a-given-character
+  \def\instring#1#2{TT\fi\begingroup
+    \edef\x{\endgroup\noexpand\in@{#1}{#2}}\x\ifin@}
+\makeatother
+
+\newcommand{\evaluatestring}[4]{\if\instring{#1}{#2}\message{#3}\else\message{#4}\fi}%
+
+\newcommand{\ihi}[1]%
+{%
+%
+  \ifthenelse{ \equal{#1}{} }%
+  {Idriss \textsc{{\footnotesize{al}}\,idrissi}}%
+  {%
+    \evaluatestring{f}{#1}% firstname
+    {%
+      Idriss \textsc{{\footnotesize{al}}\,idrissi}%
+%
+      \evaluatestring{a}{#1}%
+      {~(Ihi)}%
+      {}%
+    }%
+    {}%
+  }%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% environement épigraphe                                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{epigraphe}[1]
+{
+  \small                                                           % mise en évidence.
+  \savebox{\nomepigraphe}{#1}                                      % une boîte pour sauvegarder l’ origine de la citation.
+  \slshape                                                         % Italique.
+  \begin{flushright}                                               % Justifié à droite.
+    \fontspec[Ligatures={Common, Historical}]{Linux Libertine O}     % Ligatures anciennes, pour un effet antique.
+    \selectfont
+}
+{
+  \\[4pt]\usebox{\nomepigraphe}.                                   % insertion de la source capturée dans la commande ouvrante de l’environement.
+  \end{flushright}%                                                % Fermeture de la commande de justification à droite.
+  \vspace*{0.1cm}                                                  % Espace d’1mm avec le texte qui suit.
+}
+\newsavebox{\nomepigraphe}
+
+
+% Éviter les veuves et orphelins entre epigraphes et paragraphes
+\renewcommand{\epigraph}[2]{%
+  \par\nobreak\noindent\par\nobreak\vspace{.5\baselineskip}
+  \hfill{\small\begin{tabular}{@{}p{.4\textwidth}@{}}
+    #1 \\[1ex]
+    \hline
+    \hfill #2
+  \end{tabular}}
+  \vspace{.5\baselineskip}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ajustements graphiques                                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\fallback}[1]{{\setromanfont{DejaVu Sans}#1}}          % Déffinition d’une police linéale altérnative lorsque celle par déffaut ne prends pas en charge certains carractères.
+\newcommand{\fallbackserif}[1]{{\setromanfont{Linux Libertine O}#1}} % Déffinition d’une police à empatement altérnative.
+
+% Éviter les veuves et orfelins
+%\widowpenalty=10000
+%\clubpenalty=10000
+%\raggedbottom
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                      Commandes sémantiques                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Typographie personnelle%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Les commandes de sens suivant entrainent l’apparition d’un item dans les conventions typographiques.
+\newcommand\ironie{~\reflectbox{?}\xspace\def\ironicalsymbolused{1}}                         % Point d’ironie (préféré au symbole « ⸮ » car ayant un meilleur rendu).
+\newcommand\construct{{\setromanfont{DejaVu Sans}⛏}\def\constructsymbolused{1}}               % Point d’ironie (préféré au symbole « ⸮ » car ayant un meilleur rendu).
+\newcommand\caution[1]{\fallback{⚔}\,#1\,\fallback{⚔}\def\cautionsymbolused{1}}             % Mise entre épées-croisées des passages sujets à quotion. (Spécificité de [mes](http://taniere.info/littera/idiolecte/#Typographie) usages typographiques personnels)
+\newcommand\question[1]{¿~#1~?\def\castianquestion{1}}
+\newcommand\exclamation[1]{¡~#1~!\def\castianexclamation{1}}
+\newcommand{\arabrevert}[1]{\reflectbox{\RL{#1}}\def\reversedarabic{1}}                         % Inversion du sens d’écriture des mots arabes.
+\newcommand\iuseoxfordcoma{\def\oxfordcomaused{1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% TODO Il faut réussir à placer cet appel de paquet en haut sans que ça ne provoque de disfonctionnement comme ça a été le cas.
+\RequirePackage[english,french]{datetime2} % Permet de formater la date fauviste.
+
+% Date fauviste.
+\DTMnewdatestyle{fauvedate}{%
+\renewcommand{\DTMdisplaydate}[4]{{\number##1}~\DTMfrenchmonthname{##2} au \number##3}%
+  \renewcommand{\DTMDisplaydate}{\DTMdisplaydate}%
+}
+
+\newcommand{\debate}[1]{{\setromanfont{DejaVu Sans}⚔}\,#1\,{\setromanfont{DejaVu Sans}⚔}}             % Mise entre épées-croisées des passages sujets à quotion. (Spécificité de [mes](http://taniere.info/littera/idiolecte/#Typographie) usages typographiques personnels)
+\newcommand\work[1]{\emph{#1}}                                     % Mise en italique des noms d’œuvres.
+\newcommand\important[1]{\textbb #1}                                % Mise en italique des passages nécéssitant une emphase
+\newcommand\exergue[1]{\emph{#1}}                                  % Mise en italique des passages nécéssitant une emphase
+\newcommand\scream[1]{\uppercase{#1}}                                  % Mise en italique des passages nécéssitant une emphase
+\newcommand\xenism[1]{\emph{#1}}                                   % Mise en italique des passages nécéssitant une emphase
+\newcommand\pique{\fallback{♠}}                                    % Symbole du pic de carte à joure.
+\newcommand\autonym[1]{\emph{#1}}
+\newcommand\taxon[1]{\emph{#1}}
+\newfontfamily\greekfont[Script=Greek]{Linux Libertine O}
+\newcommand{\grec}[1]{{\greekfont#1}}
+\newcommand{\ancientgrec}[1]{{\greekfont\textgreek[variant=ancient]{#1}}}
+\newcommand{\english}[1]{\textenglish{#1}}
+% Déclarations des unités de cryptomonaies pour siunitx
+%\DeclareSIUnit{\btc}{฿}
+%\DeclareSIUnit{\ltc}{Ł}
+%\DeclareSIUnit{\doge}{Ð}
+%\DeclareSIUnit{\pot}{Ᵽ}
+\newenvironment{latin}% Alignement de la typographie du latin sur celle en usage en français.
+{\begin{hyphenrules}{latin}}%
+{\end{hyphenrules}}
+
+\newcommand{\incise}[1]{\mbox{—\,}\ignorespaces{}#1\ignorespaces{}\mbox{\,—}} %Commande permetant d’utiliser des incises.
+\newcommand\newcharacterspeaks{\mbox{---\,}\ignorespaces{}} % Commande littéraire introduisant de nouvelles citations de personnages.
+\newcommand{\didascalie}[1]{\emph{#1}} % Commande littéraire permetant d’introduire des didascalies.
+
+
+\newenvironment{keywords}%
+{%
+  \begin{center}
+    \rule[0pt]{1in}{0.25pt}\\
+    \textbf{Mots-clés\,:}
+    \begin{inparaenum}[]
+}%
+{%
+
+    \end{inparaenum}
+    \rule[5pt]{1in}{0.25pt}
+  \end{center}
+}%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{chock}%
+{%
+  \begin{center}
+    \begin{Huge}
+      \scshape
+}%
+{%
+    \end{Huge}
+  \end{center}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{SRlist}%
+{%
+  \begin{inparaenum}[i)]
+}%
+{%
+  \end{inparaenum}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                    Citation d’auteur élégante                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Inspirée de https://tex.stackexchange.com/questions/13756/quote-environment-with-reference-at-the-end-right
+
+\def\signed #1{{\leavevmode\unskip\nobreak\hfil\penalty50\hskip2em
+  \hbox{}\nobreak\hfil(#1)%
+  \parfillskip=0pt \finalhyphendemerits=0 \endgraf}}
+
+\newsavebox\mybox
+\newenvironment{aquote}[1]
+  {\savebox\mybox{#1}\begin{quote}}
+  {\signed{\usebox\mybox}\end{quote}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Traitement de la bi-édition
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifdefined\isscholarly
+  \newcommand{\scholarlyversion}[1]{#1}
+  \def\isabieditionproject{1}
+\else
+  \newcommand{\scholarlyversion}[1]{}
+\fi
+
+\ifdefined\iscommon
+  \newcommand{\commonversion}[1]{#1}
+  \def\isabieditionproject{1}
+\else
+  \newcommand{\commonversion}[1]{}
+\fi
+
+
+\ifdefined\isabieditionproject
+  \DeclareNewFootnote{exegesis}[arabic]
+  \newcommand{\exegesis}[1]{\scholarlyversion{\footnoteexegesis{#1}}}
+
+  \DeclareNewFootnote{normal}[alph]
+  \renewcommand{\footnote}[1]{\footnotenormal{#1}}
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                      Différences de version                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hypersetup{
+  backref=true,                                   % Permet d'ajouter des liens dans
+  pagebackref=true,                               % les bibliographies
+  hyperindex=true,                                % Ajoute des liens dans les index.
+  breaklinks=true,                                % Permet le retour à la ligne dans les liens trop longs.
+  bookmarks=true,                                 % Créé des signets pour Acrobat.
+  bookmarksopen=true                             % Si les signets Acrobat sont créés,
+}
+
+% Monocrome (en vue d’impression)
+\ifdefined\ismonochrome
+  \hypersetup{%
+  colorlinks = false,%
+  pdfborder = {0 0 0}%
+  }
+  \newcommand{\ismonochromeIscolerd}[2]{#1}
+\else
+\hypersetup{
+  colorlinks=true,                                % Colorise les liens.
+  urlcolor= black,                                 % Couleur des hyperliens.
+  linkcolor= black                                % Couleur des liens internes.
+}
+  \newcommand{\ismonochromeIscolerd}[2]{#2}
+\fi
+
+% Imprimable, avec les liens clickables en notes de bas de page.
+% https://tex.stackexchange.com/questions/236424/showing-url-on-footnote/236427#236427
+\ifdefined\isprintable
+  \DeclareNewFootnote{default}
+  \DeclareNewFootnote{URL}[roman]
+  \renewcommand{\href}[2]{#2\footnoteURL{\url{#1}}}
+  \newcommand{\printable}[2]{#1}
+\else
+  \newcommand{\printable}[2]{#2}
+\fi
+
+
+% Offansante ou correcte. La première peut contenir de la violence verbale.
+\ifdefined\isoffensive
+  \newcommand{\offensive}[2]{#1}
+\else
+  \newcommand{\offensive}[2]{#2}
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Création d’une commande insérant un astérisque entre paragraphes     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\newasterism}                   % Commande permettant l’insertion d’un asterisme ⁂ dans le but de l’utiliser entre paragraphes.
+{{%
+  \raisebox{-.2ex}
+  { % Il faut toujours laisser une espace, faute de quoi la commande `\supersterisme` ne parvient pas à centrer.
+    \setlength{\tabcolsep}{0.5pt}%
+    \begin{tabular}{@{}cc@{}}% 
+      \multicolumn2c*\\[-1.5ex] *&*% 
+    \end{tabular}
+  }
+}}
+
+
+% Insertion d’un saut de section avec un asterisme centré.
+\newcommand{\asterism}
+{{%
+  \normalsize %                          % Reprise de la taille habituelle.
+  \mdseries%                             % Mise en graisse moyenne…
+  \upshape%                              % …et dans une police  romaine.
+  \par\nobreak%                          %
+  \nopagebreak[4]%                       % Pas de saut de page.
+  \centering%                            % Préferer `\centering` à l’environement centre car ce dernier ne conserve pas `\nobreak`.
+  \vspace*{0.7cm}%
+  \newasterism{}                         % Insertion de l’asterisme éllaboré plus tôt.
+% ⚠ Il est nécéssaire de laisser une ligne vide ci-dessous affin de maintenir le centrage.
+
+}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Francisation
+%\gappto\captionsfrench{\renwocamand{\contentsname}{Sommaire}}
+%\newcommand\makebeginintoc{%
+%  \renwocamand{\contentsname}{Sommaire}
+%  \tableofcontent
+%  \renwocamand{\contentsname}{Table des matières}
+%}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Déffinition des sous-titres de documents
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\subtitle}[1]{%
+  \posttitle{%
+  \par\end{center}
+  \begin{center}\large#1\end{center}
+  \vskip0.5em}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\printrevisionhistoric}[1]
+{
+  \subsection*{Historique des révisions}
+  \begin{tabular}{rl}
+    \input{./githistoric.tex}
+  \end{tabular}
+
+  \ifthenelse{ \equal{#1}{} }%
+  {}%
+  {Voir #1 pour connaître l’ensemble des versions et révisions de ce document.}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Francisation du paquet `dramatist`                                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\scenename}{Scène}          % Permet à la commande `\newscene` d’utiliser le mot français « Scène ».
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Justification à droite des noms de personnages                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Les redéfinitions suivantes ont pour but de faire en sorte que les noms de perssonnages aient une présentation allignée à gauche de leur répliques.
+% La solution fut trouvée sur tex.stackexchange.com
+% https://tex.stackexchange.com/questions/39360/justification-when-using-the-dramatist-package
+
+
+% Modifications des marges pour les adaptées aux contraintes de la nouvelle présentation.
+\newenvironment{changemargin}[2]{\begin{list}{}%
+{%
+  \setlength{\topsep}{0cm}%
+  \setlength{\leftmargin}{0cm}%
+  \setlength{\rightmargin}{0cm}%
+  \setlength{\listparindent}{\parindent}%
+  \setlength{\parsep}{0cm plus 1cm}%
+  \addtolength{\leftmargin}{#1}%
+  \addtolength{\rightmargin}{#2}%
+}\item }{\end{list}}
+
+
+% Redéffinition à proprement parler de `dramatist`.
+\makeatletter
+\renewenvironment{drama}[3]
+{%
+  \settowidth{\speakswidth}{\speaksfont{#3}\speaksdel\hspace{\speechskip}}
+  \begin{changemargin}{#1}{#2}
+    \if@lnpa
+      \PackageWarning{dramatist}{\lnpwarning{a}}
+    \fi
+%
+    \if@lnps
+      \PackageWarning{dramatist}{\lnpwarning{s}}
+    \fi
+    \begin{itemize}[labelwidth=\speakswidth,leftmargin=!]%
+}%
+{%
+    \end{itemize}
+  \end{changemargin}
+}
+
+\patchcmd{\speaker}{\item[#1\speaksdel]}{\item[\speaksfont#1]}{}{}
+\patchcmd{\@character}{\item[#1\speaksdel]}{\item[\speaksfont#1]}{}{}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%FIN%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%FIN%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%FIN%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%FIN%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%FIN%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%FIN%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\endinput

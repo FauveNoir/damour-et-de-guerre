@@ -1,0 +1,91 @@
+%\documentclass[a4paper,12pt,twoside,french]{book}
+\documentclass[a5paper,10pt,twoside,french]{book}
+\usepackage{pdfpages}
+\usepackage[culdelampe,littera]{fauve}
+\usepackage[squarebr]{gmverse}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{coffee4}
+\usepackage{amsmath}
+\usepackage{enotez} % notes de fin
+\usepackage{footmisc} % référence sur les footnotes
+\usepackage{zxjatype}
+\usepackage[ipa]{zxjafont}
+\usepackage{afterpage}
+
+
+\XeTeXcharclass`’=\XeTeXcharclass`A
+\XeTeXcharclass`…=\XeTeXcharclass`A
+\XeTeXcharclass`—=\XeTeXcharclass`A
+
+\geometry{a5paper}
+
+\input{meta.tex}            % Déffinition des métadonnées.
+
+%\renewcommand{\poemtitlefont}{\raggedright\normalfont\large\bfseries\hspace{\leftmargin}}
+\renewcommand{\poemtitlefont}{\raggedright\normalfont\large\bfseries\hspace{\leftmargin}}
+
+%\makeatletter
+%\renewcommand{\@vstypeptitle}[1]{%
+%  \vspace{\beforepoemtitleskip}
+%  {\poemtitlefont #1\par\nobreak}\nobreak
+%  \vspace{\afterpoemtitleskip}\nobreak
+%}
+%\makeatother
+\makeatletter
+\renewcommand{\@vstypeptitle}[1]{%
+  \vspace{\beforepoemtitleskip}
+  {\poemtitlefont #1\par\nobreak}\nobreak
+  \vspace{\afterpoemtitleskip}\nobreak
+}
+\makeatother
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\newfontfamily\arabicfont[Ligatures=TeX,Script=Arabic]{Amiri}
+
+
+\setotherlanguages{greek,russian,arabic}
+\usepackage{titling}
+
+%\pretitle{%
+%  \vspace{-5em}
+%  \begin{center}
+%  \LARGE
+%  \includegraphics[height=2cm]{F.pdf}\\[\bigskipamount]
+%}
+%\posttitle{\end{center}}
+
+
+\newcommand\BrText[1]{%
+  \par\smallskip
+   \noindent\makebox[\textwidth-1cm][r]{$\text{Refrain}\left\{
+    \begin{minipage}{\textwidth}
+    #1
+    \end{minipage}
+  \right.\nulldelimiterspace=-28pt$}\smallskip
+}    
+
+\newenvironment{prose}
+{\em\small}
+{}
+
+\setenotez{list-heading=\chapter*{#1}\markboth{#1}{#1}}
+\renewcommand{\poemtoc}{subsection}
+
+\begin{document}
+  \DTMsetdatestyle{fauvedate}
+  \maketitle
+
+  \mainmatter
+  \input{contenu.tex}       % L’œuvre proprement dite.
+
+ % \newpage
+  \backmatter
+  \cleardoublepage
+  \tableofcontents
+
+  \printendnotes
+\end{document}
