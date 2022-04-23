@@ -2,7 +2,7 @@
 \documentclass[a5paper,10pt,twoside,french]{book}
 \usepackage{pdfpages}
 \usepackage[culdelampe,littera]{fauve}
-\usepackage[squarebr]{gmverse}
+%\usepackage[squarebr]{gmverse}
 \usepackage{array}
 \usepackage{longtable}
 \usepackage{coffee4}
@@ -12,6 +12,75 @@
 \usepackage{zxjatype}
 \usepackage[ipa]{zxjafont}
 \usepackage{afterpage}
+\usepackage{needspace}
+\usepackage{tabstackengine}
+\usepackage{tabularx,booktabs}
+\usepackage{lscape}
+\usepackage{newunicodechar}
+\usepackage[strict]{changepage}
+\usepackage{etoolbox}
+\usepackage{xcolor}
+\usepackage{afterpage}
+\usepackage{ragged2e}
+\usepackage{setspace}
+\usepackage{wrapfig}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage{xpatch}
+\usepackage{lipsum}
+\usepackage{eso-pic} % Ce paquet permet d’insérer le qrcode à un endroit fixe, avec, pour origine du repère, le coint haut gauche.
+\usepackage{wallpaper}
+\usepackage{shapepar}
+\usepackage{paracol}
+\usepackage{bm}
+\usepackage{xinttools}
+\usepackage{allrunes}
+%\usepackage{slantsc}
+%\usepackage{fontaxes}
+%\usepackage{ebgaramond}
+%\usepackage[noGFSDidotTS1]{gfsdidot}
+%\usepackage{reledmac}
+\usetikzlibrary{shapes}
+\usetikzlibrary{calc,positioning,fit,intersections}
+\usetikzlibrary{shapes.geometric}
+
+\bibliography{./dag.bib}
+
+\graphicspath{{img/}}
+
+
+\definecolor{creme}{HTML}{ECDCAB}
+\definecolor{rouge}{HTML}{C2302A}
+\definecolor{noir}{HTML}{41413B}
+
+\newcommand\didot{
+\setmainfont[
+  Mapping=tex-text,
+  BoldFont=GFSDidotBold.otf]{GFSDidot.otf}
+}
+
+%\newcommand\ebgaramond{
+%  \setmainfont{EBGaramond12-Regular}
+%}
+
+\input Typocaps.fd
+\newcommand*\digobro{\usefont{U}{Typocaps}{xl}{n}}
+
+\newif\ifnormalLT
+\normalLTtrue
+
+\makeatletter
+\patchcmd {\LT@start}
+          {\vfil \break}
+          {\ifnormalLT \vfil \break \fi}
+          {\typeout{Patching longtable succeeded!}}
+          {\typeout{Patching longtable failed!}\ERROR}
+\patchcmd {\LT@start}
+          {\penalty \z@}
+          {\ifnormalLT \penalty \z@ \fi}
+          {\typeout{Patching longtable succeeded!}}
+          {\typeout{Patching longtable failed!}\ERROR}
+\makeatother
 
 
 \XeTeXcharclass`’=\XeTeXcharclass`A
@@ -40,9 +109,14 @@
 }
 \makeatother
 
-\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
-\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
-\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\makeatletter
+\def\hardnobreakpar{\par\nobreak\@afterheading} 
+\makeatother
+
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
 
 \newfontfamily\arabicfont[Ligatures=TeX,Script=Arabic]{Amiri}
 
@@ -58,26 +132,158 @@
 %}
 %\posttitle{\end{center}}
 
+%*****************************************  *% poème flotant <<<<<<<<<<<<<<
+\DeclareFloatingEnvironment{floatpoemenv}
+
+\newenvironment{floatpoem}
+{\begin{floatpoemenv}[!ht]}
+{\end{floatpoemenv}}
+%*********************************************************
+
+
+%\newcommand\BrText[1]{%
+%  \par\smallskip%
+%   \noindent\makebox[\textwidth-1cm][r]{$\text{Refrain}\left\{
+%    \hspace{-0.5cm}\begin{minipage}{\textwidth}%
+%    \begin{verse}%
+%    #1
+%    \end{verse}
+%    \end{minipage}
+%  \right.\nulldelimiterspace=-14pt$}\smallskip
+%}    
 
 \newcommand\BrText[1]{%
-  \par\smallskip
-   \noindent\makebox[\textwidth-1cm][r]{$\text{Refrain}\left\{
-    \begin{minipage}{\textwidth}
+  \par\smallskip%
+   \noindent\makebox[\textwidth-3.3cm][r]{$\text{Refrain}\left\{
+    \hspace{-0.7cm}\begin{minipage}{\textwidth}%
+    \vspace{-6pt}
+    \begin{verse}%
     #1
+    \end{verse}
     \end{minipage}
-  \right.\nulldelimiterspace=-28pt$}\smallskip
+  \right.\nulldelimiterspace=-14pt$}\smallskip
 }    
 
 \newenvironment{prose}
-{\em\small}
+{\em\small\paragraph{}}
 {}
 
-\setenotez{list-heading=\chapter*{#1}\markboth{#1}{#1}}
+
+\newcommand\fullpageillustartion[1]
+{
+\begin{figure}[p]
+    \vspace*{-2cm}
+    \makebox[\linewidth]{
+        \includegraphics[width=1.3\linewidth]{#1}
+    }
+\end{figure}
+}
+
+\setenotez{list-heading=\chapter*{#1}\markboth{#1}{#1}, list-name=Notes}
 \renewcommand{\poemtoc}{subsection}
+
+\input{apparence.tex}       % page de titre
+
+\setlength{\belowcaptionskip}{-20pt}
+
+\fancyhf{}
+
+\fancypagestyle{fancy2}{%
+	\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\chaptername\ \thechapter. {##1}}}{}}
+}
+
+\makeatletter
+\pagestyle{fancy2}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[LO]{\MakeUppercase{\rightmark}}
+\fancyhead[RE]{\MakeUppercase{\@title}}
+%\setlength{\headheight}{14.7pt}
+
+\patchcmd{\chaptermark}{\@chapapp\ }{}{}{}
+\renewcommand{\headrulewidth}{0pt}
+\makeatother
+
+%\sethangingsymbol{[\,}
+
+%\AtBeginDocument{%
+%  \xpatchcmd{\verse}
+%    {\penalty10000 \vfil\penalty\betweenstanzaspenalty\vfilneg\relax}
+%    {\penalty\betweenstanzaspenalty}
+%    {}{}%
+%}
+
+\newcommand\authorshape{% 
+%{5}             %line center at x=7
+%{0}  b{0}\\     % text starts at (0,0)
+%{0}  t{0}{10}\\ % Line at y=0 starts at x=0 with length 14
+%{10} t{0}{10}\\ % Line at y=10 starts at x=0 with length 14
+%{15} t{5}{0}\\  % Line at y=15 starts at x=7 with length 0
+%{15} t{4}{0}\\  % Line at y=15 starts at x=7 with length 0
+%{15} e{5}       % text ends at (7,15)
+{5}             %line center at x=7
+{0}  b{0}\\     % text starts at (0,0)
+{0}  t{0}{10}\\ % Line at y=0 starts at x=0 with length 14
+{12} t{0}{10}\\ % Line at y=10 starts at x=0 with length 14
+{14} t{5}{0}\\  % Line at y=15 starts at x=7 with length 0
+{15} t{4}{0}\\  % Line at y=15 starts at x=7 with length 0
+{16} e{3}       % text ends at (7,15)
+}
+
+\makeatletter
+\newunicodechar{⸮}{%
+  {%
+  \,%\NoAutoSpacing%
+  \iffontchar\font`⸮
+    ⸮%
+  \else%
+    \ifdim\fontdimen1\font=\z@%
+    \tikz[baseline=(?.base),inner sep=0pt,outer sep=0pt]\node[xscale=-1] (?) {{\NoAutoSpacing?}};%
+    \else%
+    {\NoAutoSpacing\tikz[baseline=(?.base),inner sep=0pt,outer sep=0pt]\node[xscale=-1,xslant=-0.5](?){\NoAutoSpacing?};\kern-0.36em}%
+    \fi%
+  \fi%
+  }%
+}
+\makeatother
+
+%\setlength\LTpre{0em} \setlength\LTpost{0em}
+
 
 \begin{document}
   \DTMsetdatestyle{fauvedate}
   \maketitle
+
+  \frontmatter
+
+{
+\thispagestyle{empty}
+\chapter*{}
+\thispagestyle{empty}
+
+  \null\vfill           % Pression du haut pour condenser les informations de crédit en bas de la page.
+    \begin{center}
+      \includegraphics[width=3cm]{coeur-poignarde-monochrome.pdf}
+ 
+      \LARGE {D’AMOUR \emph{\&} DE GUERRE}
+    \end{center}
+    \vspace*{150pt}
+  \vfill                % Espace vértical.
+
+}
+{
+\thispagestyle{empty}
+\chapter*{}
+\thispagestyle{empty}
+
+  \null\vfill           % Pression du haut pour condenser les informations de crédit en bas de la page.
+    \begin{flushright}
+      \emph{%
+      À F*****
+      }
+    \end{flushright}
+  \vspace*{130pt}
+  \vfill                % Espace vértical.
+}
 
   \mainmatter
   \input{contenu.tex}       % L’œuvre proprement dite.
@@ -85,7 +291,78 @@
  % \newpage
   \backmatter
   \cleardoublepage
+
+  \addcontentsline{toc}{section}{Table des matières}
   \tableofcontents
 
+  \addcontentsline{toc}{section}{Notes}
   \printendnotes
+
+  \addcontentsline{toc}{section}{Table des illustrations}
+  \listoffigures
+
+  \input{auteur.tex}
+
+  \newpage
+  \thispagestyle{empty}
+  \addcontentsline{toc}{section}{Carré du cauchemar}
+  \topskip0pt
+  \vspace*{\fill}
+  \Large
+  \begin{center}
+    \setstackTAB{ }
+    \fixTABwidth{T}
+    \tabbedCenterstack{
+A F \textbf{F} R E\\
+Q U \textbf{A} N D\\
+\textbf{F} \textbf{A} \textbf{U} \textbf{V} \textbf{E}\\
+R Ê \textbf{V} Â T\\
+H I \textbf{E} R \phantom{,}S\phantom{,}
+}
+  \end{center}
+  \vspace*{\fill}\null
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 4eme de couv
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  \clearpage
+%  \pagestyle{empty}
+
+%  ~
+
+  \ifodd\value{page} ~ \else \clearpage\pagecolor{creme}\pagestyle{empty}\newpage\pagestyle{empty} \fi%
+
+
+
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \pagestyle{empty}%
+%  \clearpage%
+
+  \newgeometry{left=1cm, right=1cm, top=25mm, bottom=0mm}%
+  \pagecolor{creme}%
+  \color{noir}%
+  \center%
+
+
+  \includegraphics[height=8cm]{chat-de-sable.pdf}
+
+  \vskip 0.65cm
+
+  {
+  \begin{minipage}[t]{0.6\textwidth}%
+  \begin{justify}
+  \fontsize{10pt}{10pt}\selectfont{}%
+  \lettrine[lines=3]{\digobro{}\color{rouge}M}{agritte} n’aurait pas mieux dit. «\,{{\color{rouge}Ceci n’est pas une quatrième de couverture}}\,» artifice que les Anglais désignent de l’écœurant nom de \xenism{blurb}, on y entendrait presque l’onomatopée du vomissement tant la luette racle le fond de la gorge. Et encore… la chose demeure trop joliment dite.
+%
+%Quelle étrangeté d’un monde céphalopode que les premières pages que l’on ai lu d’un livre en soient les dernières. À toutes ces absurdités, nous nous sommes refusé d’être les complices.
+%
+Ce serait alors gâter la beauté que nous avons voulu mettre dans ce livre que de le doter d’une pareille ignominie qui prend le lecteur de haut et l’enjoins à faire sien un point de vue. Et pourquoi d’ailleurs le lester d’une quatrième de couverture lorsque vous pourriez le feuilleter et en lire des extraits dès à présent\ironie
+  \end{justify}
+  \end{minipage}%
+  }
+ 
+
+\vfill\null
+
 \end{document}

@@ -1,0 +1,88 @@
+%% Creator: Inkscape 1.0.2 (e86c870879, 2021-01-15), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'haik-pleine-page.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{628.08654587bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.94469914)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{haik-pleine-page.pdf}}%
+    \put(0.05684518,0.80272017){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\poemtitle{Ĥaïk}%
+\begin{minipage}%
+\begin{verse}%
+Soutenant du dessus du blanc litham\endnote{Bande d’étoffe couvrant la partie basse du visage des femmes, juste en dessous des yeux.}\label{foot.litham}%
+Un regard insolent de peccadille.%
+Mystère du tissus qui déshabille%
+Davantage qu’il ne vêtit les femmes.%
+Triangle facial de chaire blanche%
+Au haut pyramidion capillaire%
+Est peau de chagrin pleine de lumière%
+Où s’agrippent de lestes espérances.%
+Cette obscénité qui se fit pudeur%
+Serti le visage décolleté,%
+Et à l’endroit où l’on retient l’ardeur%
+Crée une si nouvelle nudité%
+Où la pupille qui pointe en téton,%
+Aréolée de khôl. Quand il se baisse,%
+Soustrait aux regards ses délicatesses,%
+Opposant des sourcils en un auvent.%
+Et sourcils effilés jusqu’au canthus,%
+En un ongle lacérant ma poitrine%
+Qui est alors l’âtre ou siège chagrine%
+La flamme aux feuilles tissées de lotus.%
+Resplendissants et glorieux visages,%
+Pistils des femmes emplis de présages%
+Aux cheveux sépales qu’elles cajolent,%
+Se sont-ils adjoint pareilles corolles ?%
+\end{verse}%
+\end{minipage}%
+}}}%
+  \end{picture}%
+\endgroup%

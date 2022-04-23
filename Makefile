@@ -133,8 +133,8 @@ compile:
 	${COMPIL} ;
 	#$(MAKEGLOS) ${PROCNAME}.glo ; # Traitmeent du glossaire [À décomenter si besoin de glossaire].
 ifeq ($(SCHOLARLY),true) # Le bloc suivant n’est actif que pour les projets dévelopant une biédition.
-	#$(BIB)      ${PROCNAME} ; # Traitement de la bibliographie [À décomenter si besoin de bibliographie].
-	#${FULLCOMPIL}
+	$(BIB)      ${PROCNAME} ; # Traitement de la bibliographie [À décomenter si besoin de bibliographie].
+	${FULLCOMPIL}
 endif
 
 simplecomplie:
@@ -166,7 +166,7 @@ archive:
 	tar --gzip --create --verbose --file ${NAME}.tar.gz `ls | grep --line-regexp --file=archivedfiles | tr '\n' ' '` # N’archiver que les fichiers déffinits dans la variable `$ARCHIVED`.
 
 clean:
-	for f in `ls | grep --extended-regexp  "(^${NAME}(-Ed\.-(sav|com)|)((-agressif|)(-imprim|)(-NB|))(\.(aux|bbl|blg|glg|glo|gls|ist|log|out|run\.xml)|-blx\.bib)|*\.tex\.project\.vim)"` ; do echo Suppression de $$f ; rm $$f ; done ;#
+	for f in `ls | grep --extended-regexp  "(^${NAME}(-Ed\.-(sav|com)|)((-agressif|)(-imprim|)(-NB|))(\.(aux|bbl|blg|glg|glo|gls|ist|log|out|run\.xml|idx|lof|toc)|-blx\.bib)|*\.tex\.project\.vim)"` ; do echo Suppression de $$f ; rm $$f ; done ;#
 	for f in `ls | grep --extended-regexp  ".*(\~|\.orig)"` ; do echo Suppression de $$f ; rm $$f ; done ;#
 
 mrproper:

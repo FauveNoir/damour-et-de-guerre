@@ -19,6 +19,7 @@
 \RequirePackage{subcaption}
 %\RequirePackage{arabtex}
 %\RequirePackage[load-configurations = abbreviations]{siunitx}
+\RequirePackage{newfloat} 
 \RequirePackage[nonumberlist,nopostdot,toc]{glossaries}
 \RequirePackage{lettrine}
 \RequirePackage{multicol}
@@ -338,8 +339,8 @@
 \newcommand{\fallbackserif}[1]{{\setromanfont{Linux Libertine O}#1}} % Déffinition d’une police à empatement altérnative.
 
 % Éviter les veuves et orfelins
-%\widowpenalty=10000
-%\clubpenalty=10000
+\widowpenalty=10000
+\clubpenalty=10000
 %\raggedbottom
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

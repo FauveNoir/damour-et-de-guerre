@@ -1,0 +1,59 @@
+%% Redéfinition de \maketitle pour y ajouter le genre littéraire
+%\makeatletter
+%\def\maketitle{
+%  \begin{titlepage}
+%  \newgeometry{right=1.5in,left=1.5in}
+%  \begin{center}
+%    {\large\uppercase{Grande œuvre}}
+%    \null\vfill
+%    {\Large \@author}
+%    \vskip 1cm
+%    {\LARGE \@title}
+%    \vskip 0.5cm
+%    {\large{\@genre}}
+%    \vskip 0.5cm
+%    {\Large \@date}
+%  \vfill\null
+%
+%    \scholarlyversion{{\large Édition savante}
+%
+%    \footnotesize{Avec préface, notes de bas de page, \xenism{dramatis personæ}, bibliographie, et glossaire.}}%
+%  \commonversion{Édition commune}
+%  \end{center}
+%  \restoregeometry
+%  \end{titlepage}
+%}
+%\def\genre#1{\def\@genre{#1}}
+%\def\subtitle#1{\def\@subtitle{#1}}
+%\makeatother
+
+
+
+\makeatletter
+\def\maketitle{
+  \begin{titlepage}
+  \pagecolor{creme}
+  \newgeometry{right=0in,left=0in, top=26mm, bottom=0mm}
+  \begin{center}
+    \includegraphics[height=57mm]{coeur-poignarde.pdf} 
+    \vskip 8mm
+    {\fontsize{24}{0}\selectfont \color{rouge}\uppercase{D’Amour \emph{\&} de Guerre}}
+    \vskip 7mm
+    {\fontsize{15}{0}\selectfont \color{noir}{Recueil de poésie}}
+    \vskip 8mm
+    {\fontsize{16}{0}\selectfont \color{noir}\textsc{Fauve}}
+    \vskip 67mm
+    {\fontsize{15}{0}\selectfont \color{noir}{\fontfamily{cmdh}\pique}}
+%   \vskip -0.7mm
+%   \textcolor{noir}{\rule{1em}{0.2pt}}
+    \vskip 2mm
+    {\fontsize{16}{0}\selectfont \color{noir}{\oldstylenums{2021}}}
+
+  \end{center}
+  \afterpage{\pagecolor{white}}
+  \restoregeometry
+  \end{titlepage}
+}
+%\def\genre#1{\def\@genre{#1}}
+%\def\subtitle#1{\def\@subtitle{#1}}
+\makeatother
