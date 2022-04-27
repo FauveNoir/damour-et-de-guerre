@@ -262,9 +262,11 @@
 
 \newcommand\test{machin}
 
-\newcommand{\rhyme}[1]
+\newcommand{\rhyme}[2][]
 {%
-  \index[rhymes]{#1@-#1!\altcurrentpoemtitle@\emph{\currentpoemtitle}}%
+  \ifthenelse{\isempty{#1}} %
+    {\index[rhymes]{#2@-#2!\altcurrentpoemtitle@\emph{\currentpoemtitle}}}%               % if no title option given
+    {\index[rhymes]{#1@-#2!\altcurrentpoemtitle@\emph{\currentpoemtitle}}}%    % if title given
 }
 
 %\newcommand{\rhyme}[2]
@@ -453,7 +455,6 @@
 
 \let\OLDpoemtitle\poemtitle
 \renewcommand{\poemtitle}[2][]{%
-  %\renewcommand\currentpoemtitle{#2} %
   \setIndexNameEntry{#2} %
   \ifthenelse{\isempty{#1}} %
     {\OLDpoemtitle{#2}}               % if no title option given
