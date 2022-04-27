@@ -264,7 +264,7 @@
 
 \newcommand{\rhyme}[1]
 {%
-  \index[rhymes]{#1@-#1!\emph{\currentpoemtitle}}%
+  \index[rhymes]{#1@-#1!\altcurrentpoemtitle@\emph{\currentpoemtitle}}%
 }
 
 %\newcommand{\rhyme}[2]
@@ -274,7 +274,7 @@
 
 \newcommand{\putinmetricindex}[2]
 {
-  \index[metric]{#1@#2!\emph{\currentpoemtitle}}
+  \index[metric]{#1@#2!\altcurrentpoemtitle@\emph{\currentpoemtitle}}
 }
 
 \newcommand{\metric}[1]
@@ -359,7 +359,7 @@
 
 \newcommand{\putinstrophyindex}[2]
 {
-  \index[strophy]{#1@#2!\emph{\currentpoemtitle}}
+  \index[strophy]{#1@#2!\altcurrentpoemtitle@\emph{\currentpoemtitle}}
 }
 
 \newcommand{\haiku}
@@ -439,14 +439,13 @@
 }
 
 \newcommand{\setIndexNameEntry}[2][]
-{
-
-  \ifthenelse{\isempty{#1}} %
+{%
+  \ifthenelse{\isempty{#1}}%
     {%               % if no title option given
       \renewcommand\currentpoemtitle{#2}%
       \renewcommand\altcurrentpoemtitle{#2}%
     }%
-    {\OLDpoemtitle[#1]{#2}
+    {
       \renewcommand\currentpoemtitle{#2}%
       \renewcommand\altcurrentpoemtitle{#1}%
     }    % if title given
@@ -454,7 +453,8 @@
 
 \let\OLDpoemtitle\poemtitle
 \renewcommand{\poemtitle}[2][]{%
-  \renewcommand\currentpoemtitle{#2} %
+  %\renewcommand\currentpoemtitle{#2} %
+  \setIndexNameEntry{#2} %
   \ifthenelse{\isempty{#1}} %
     {\OLDpoemtitle{#2}}               % if no title option given
     {\OLDpoemtitle[#1]{#2}}    % if title given
