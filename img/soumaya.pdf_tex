@@ -50,7 +50,11 @@
   \makeatother%
   \begin{picture}(1,1.49999989)%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{soumaya.pdf}}%
-    \put(0.66238826,1.01185408){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\poemtitle{Soumaya}}}}%
+    \put(0.66238826,1.01185408){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\poemtitle{Soumaya}\haiku%
+    \index{Al-Andalous}%
+    \index{Femmes}%
+    \rhyme{tein}%
+    }}}%
     \put(0.40574486,0.53819276){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\textrm{S’allume alors sur son teint}}}}%
     \put(0.4181298,0.56968312){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\textrm{Bêlements éteints,}}}}%
     \put(0.39140286,0.50668709){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\textrm{Un ravissement.}}}}%

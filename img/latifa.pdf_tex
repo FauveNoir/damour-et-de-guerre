@@ -53,6 +53,9 @@
     \put(0.47324751,0.19506187){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Ou l’Andalousie ?}}}%
     \put(0.53600815,0.22650313){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Est-ce un vol de papillon\\ }}}%
     \put(0.57180319,0.25805791){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Quand elle sourit,}}}%
-    \put(0.00555015,0.90484012){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\poemtitle{Latifa}\haiku }}}%
+    \put(0.00555015,0.90484012){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\poemtitle{Latifa}\haiku%
+    \index{Al-Andalous}%
+    \rhyme{i}%
+    }}}%
   \end{picture}%
 \endgroup%
