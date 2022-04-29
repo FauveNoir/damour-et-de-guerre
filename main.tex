@@ -40,6 +40,8 @@
 \usepackage[absolute,overlay]{textpos}
 \usepackage{imakeidx}
 \usepackage{xifthen} % provides \isempty test
+\usepackage{amsmath}
+\usepackage{multirow}
 %\usepackage{slantsc}
 %\usepackage{fontaxes}
 %\usepackage{ebgaramond}
@@ -469,6 +471,29 @@
     {\OLDpoemtitle[#1]{#2}}    % if title given
 }
 
+\newcommand\price{73,00}
+
+\def\MADsymbolA{%
+  \leavevmode
+  \vtop{\offinterlineskip %\bfseries
+    \setbox0=\hbox{D}%
+    \setbox2=\hbox to\wd0{\hfil\hskip-.03em
+    \vrule height .3ex width .15ex\hskip .08em
+    \vrule height .3ex width .15ex\hfil}
+    \vbox{\copy2\box0}\box2}}
+
+\def\MADsymbolB{\leavevmode
+  {\setbox0=\hbox{{D}}%
+    \dimen0\ht0 \advance\dimen0 0.2ex
+    \ooalign{\hfil \box0\hfil\cr
+      \hfil\vrule height \dimen0 depth.2ex\hfil\cr
+    }%
+  }%
+}
+
+\newcommand\MADsymbol{\MADsymbolB{}}
+
+
 
 \begin{document}
   \DTMsetdatestyle{fauvedate}
@@ -605,6 +630,22 @@ Ce serait alors gâter la beauté que nous avons voulu mettre dans ce livre que 
   \end{minipage}%
   }
  
+  \begin{textblock*}{3cm}(12cm,19.5cm) 
+    \StrMid{\price}{1}{4}[\country]
+    \newcommand\pricenaturalpart{\StrBefore{\price}{,}}
+    \newcommand\pricedecimalpart{\StrBehind{\price}{,}}
+    {
+    \color{rouge}%
+    %
+    %
+%    \textsuperscript{\fontsize{0.7cm}{1em}\selectfont,\pricedecimalpart}%
+    \addtolength{\tabcolsep}{-7pt}  
+    \begin{tabular}{rl}
+      \multirow{2}{*}{\fontsize{1.8cm}{1em}\selectfont\pricenaturalpart} &\fontsize{0.6cm}{1em}\selectfont,\pricedecimalpart \\
+                                                                         &\phantom{{\fontsize{0.6cm}{1em}\selectfont,}}\fontsize{0.8cm}{1em}\selectfont \MADsymbol
+    \end{tabular}
+    }
+  \end{textblock*}
 
 \vfill\null
 
