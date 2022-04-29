@@ -1,4 +1,4 @@
-%% Creator: Inkscape inkscape 0.92.1, www.inkscape.org
+%% Creator: Inkscape 1.0.2 (e86c870879, 2021-01-15), www.inkscape.org
 %% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
 %% Accompanies image file 'soumaya.pdf' (pdf, eps, ps)
 %%
@@ -35,6 +35,8 @@
     \renewcommand\transparent[1]{}%
   }%
   \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
     \setlength{\unitlength}{396.8503937bp}%
     \ifx\svgscale\undefined%
@@ -49,14 +51,12 @@
   \global\let\svgscale\undefined%
   \makeatother%
   \begin{picture}(1,1.49999989)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{soumaya.pdf}}%
-    \put(0.66238826,1.01185408){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\poemtitle{Soumaya}\haiku%
-    \index{Al-Andalous}%
-    \index{Femmes}%
-    \rhyme{tein}%
-    }}}%
-    \put(0.40574486,0.53819276){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\textrm{S’allume alors sur son teint}}}}%
-    \put(0.4181298,0.56968312){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\textrm{Bêlements éteints,}}}}%
-    \put(0.39140286,0.50668709){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\textrm{Un ravissement.}}}}%
+    \put(0.65530484,1.01185408){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\poemtitle{Soumaya}\end{tabular}}}}%
+    \put(0.40574486,0.53819276){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}S’allume alors sur son teint\end{tabular}}}}%
+    \put(0.4181298,0.56968312){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Bêlements éteints,\end{tabular}}}}%
+    \put(0.39140286,0.50668709){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Un ravissement.\end{tabular}}}}%
   \end{picture}%
 \endgroup%
