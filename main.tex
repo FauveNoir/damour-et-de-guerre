@@ -632,7 +632,7 @@ Ce serait alors gâter la beauté que nous avons voulu mettre dans ce livre que 
   \end{minipage}%
   }
  
-  \begin{textblock*}{3cm}(11.8cm,19.3cm) 
+  \begin{textblock*}{3cm}(11.8cm,18.8cm) 
     \StrMid{\price}{1}{4}[\country]
     \newcommand\pricenaturalpart{\StrBefore{\price}{,}}
     \newcommand\pricedecimalpart{\StrBehind{\price}{,}}
@@ -642,6 +642,7 @@ Ce serait alors gâter la beauté que nous avons voulu mettre dans ce livre que 
     %
     \addtolength{\tabcolsep}{-7pt}
     \begin{tabular}{rl}
+      {\fontsize{0.4cm}{1em}\selectfont\color{noir}8,00\,€} \\
       \multirow{2}{*}{\fontsize{1.8cm}{1em}\selectfont\pricenaturalpart} &\fontsize{0.6cm}{1em}\selectfont,\pricedecimalpart \\
                                                                          &\phantom{{\fontsize{0.6cm}{1em}\selectfont,}}\fontsize{0.8cm}{1em}\selectfont \MADsymbol
     \end{tabular}
