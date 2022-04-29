@@ -42,6 +42,8 @@
 \usepackage{xifthen} % provides \isempty test
 \usepackage{amsmath}
 \usepackage{multirow}
+\usepackage{pst-barcode}
+
 %\usepackage{slantsc}
 %\usepackage{fontaxes}
 %\usepackage{ebgaramond}
@@ -630,7 +632,7 @@ Ce serait alors gâter la beauté que nous avons voulu mettre dans ce livre que 
   \end{minipage}%
   }
  
-  \begin{textblock*}{3cm}(12cm,19.5cm) 
+  \begin{textblock*}{3cm}(11.8cm,19.3cm) 
     \StrMid{\price}{1}{4}[\country]
     \newcommand\pricenaturalpart{\StrBefore{\price}{,}}
     \newcommand\pricedecimalpart{\StrBehind{\price}{,}}
@@ -638,14 +640,22 @@ Ce serait alors gâter la beauté que nous avons voulu mettre dans ce livre que 
     \color{rouge}%
     %
     %
-%    \textsuperscript{\fontsize{0.7cm}{1em}\selectfont,\pricedecimalpart}%
-    \addtolength{\tabcolsep}{-7pt}  
+    \addtolength{\tabcolsep}{-7pt}
     \begin{tabular}{rl}
       \multirow{2}{*}{\fontsize{1.8cm}{1em}\selectfont\pricenaturalpart} &\fontsize{0.6cm}{1em}\selectfont,\pricedecimalpart \\
                                                                          &\phantom{{\fontsize{0.6cm}{1em}\selectfont,}}\fontsize{0.8cm}{1em}\selectfont \MADsymbol
     \end{tabular}
     }
   \end{textblock*}
+
+
+  \begin{textblock*}{\paperwidth}(0.1em,17.6cm) 
+    \color{rouge}%
+    \begin{pspicture}(3.5,1.2in)
+      \psbarcode{0-00000-000}{includetext textcolor=C2302A barcolor=C2302A textfont="Liberation Sans" isbntextfont="Anonymous Pro" height=0.5}{isbn}
+    \end{pspicture}
+  \end{textblock*}
+
 
 \vfill\null
 
