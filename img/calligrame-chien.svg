@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
@@ -15,7 +13,7 @@
    viewBox="0 0 139.80836 156.40348"
    version="1.1"
    id="svg8"
-   inkscape:version="0.92.1 r15371"
+   inkscape:version="1.0.2 (e86c870879, 2021-01-15)"
    sodipodi:docname="calligrame-chien.svg">
   <defs
      id="defs2">
@@ -64,16 +62,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="13.421894"
-     inkscape:cx="447.58701"
-     inkscape:cy="442.2402"
+     inkscape:zoom="1.6777368"
+     inkscape:cx="428.40194"
+     inkscape:cy="244.70526"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="g4947"
      showgrid="false"
      inkscape:window-width="1916"
-     inkscape:window-height="1039"
+     inkscape:window-height="1038"
      inkscape:window-x="0"
-     inkscape:window-y="39"
+     inkscape:window-y="40"
      inkscape:window-maximized="0"
      fit-margin-top="0"
      fit-margin-left="0"
@@ -81,7 +79,8 @@
      fit-margin-bottom="0"
      inkscape:snap-global="false"
      showguides="true"
-     inkscape:guide-bbox="true">
+     inkscape:guide-bbox="true"
+     inkscape:document-rotation="0">
     <sodipodi:guide
        position="107.94374,2.2676777"
        orientation="0,1"
@@ -96,7 +95,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -110,9 +109,9 @@
        inkscape:connector-curvature="0"
        id="path16408"
        d="m 244.90957,-13.949793 c 4.30147,-2.2648 9.08693,-5.060335 16.08124,-5.130993"
-       style="fill:none;fill-rule:evenodd;stroke:none;stroke-width:0.13229167;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:none;fill-rule:evenodd;stroke:none;stroke-width:0.132292;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="fill:none;fill-rule:evenodd;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 243.93239,-17.335606 c 2.52709,-1.283879 8.94653,-3.488839 17.36788,-2.669026"
        id="path4655"
        inkscape:connector-curvature="0"
@@ -122,21 +121,21 @@
        inkscape:connector-curvature="0"
        id="path16412"
        d="m 251.78469,-22.181923 c 3.54286,-0.06431 6.69469,0.373898 9.51558,1.237792"
-       style="fill:none;fill-rule:evenodd;stroke:none;stroke-width:0.13229167;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+       style="fill:none;fill-rule:evenodd;stroke:none;stroke-width:0.132292;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="fill:none;fill-rule:evenodd;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 247.17916,-10.218204 c 1.97559,-2.268483 9.365,-7.21145 14.85502,-8.364231"
        id="path4674"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="fill:none;fill-rule:evenodd;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 233.7933,-31.191095 c 1.3946,-7.230753 4.41545,-14.08622 8.54126,-20.686694 -0.20183,4.85866 -0.18073,14.561774 1.16512,18.388644 m 0,0 c 4.00381,0.05262 8.20744,0.792141 10.45104,2.146639 1.81,1.092716 3.67792,2.115838 4.48707,4.40955 0.69767,1.977599 1.44121,1.935308 2.47582,2.475301 0.65014,0.339389 1.47492,0.140816 2.16576,0.387056 2.28775,0.81537 3.13929,3.61068 2.96829,6.345351 -0.17699,2.829049 -1.44798,5.593267 -3.35483,6.032706 -2.87874,0.663411 -6.60286,0.809866 -8.51008,2.4752986 1.69479,3.3100882 2.79553,5.6143524 3.83801,9.82989245 4.42157,17.87777895 -2.58253,32.36982595 -8.97103,47.04467295 l 1.26504,41.453284 c 8.55026,0.195942 8.77139,12.130114 0.7736,12.532564 l -6.03426,0.15503 -9.75504,-20.6582 m -0.61177,2.09086 c -1.31285,3.591468 -8.17276,7.366297 -11.13325,10.545866 m 2.11667,0 5.46478,0.15503 c 4.7224,-0.06431 5.68135,7.570234 0,7.735964 l -56.79077,0.285 -0.14779,-0.0543 c -0.3678,0.0187 -0.73648,-0.01 -1.09709,-0.0842 -18.65655,-3.679674 -30.50466,-21.235395 -33.84393,-38.775407 -1.66964,-8.770009 -1.27178,-17.716733 1.84743,-25.397933 3.1192,-7.681204 9.26342,-14.068864 18.13688,-16.619141 2.17025,-0.623736 4.55906,-0.964805 7.01559,-0.850077 2.45653,0.114729 4.98152,0.683522 7.42022,1.881021 2.17688,1.034431 3.08791,3.648908 2.02529,5.812165 -1.06262,2.163255 -3.6887,3.040259 -5.83798,1.949636 -2.5745,-1.264182 -5.51041,-1.265614 -8.23464,-0.482659 -6.33183,1.819799 -10.19532,5.859185 -12.51138,11.562602 -2.31606,5.703419 -2.78174,13.098187 -1.36736,20.52743 2.61238,13.721913 12.99499,27.779039 25.42226,31.909381 m -1.25274,-3.128001 c 0.17338,-18.263858 -8.96987,-70.051505 46.71504,-85.4332192 3.08986,-1.906688 6.07864,-3.94364362 6.34535,-6.7830487 0.92134,-9.8096761 -1.93015,-20.7898291 8.81342,-29.1780631"
        id="path4595"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cccccccccscccccccccccccccsccscscsssccccc" />
     <path
-       style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.99999994;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
        d="m 460.98242,281.62695 c 29.6691,-35.95341 53.93411,-82.1165 58.46875,-125.68164 1.25628,-10.61742 -7.10608,-19.92045 -17.79687,-19.79883 -9.09152,0.10437 -16.62848,7.07338 -17.44336,16.12891 -1.54107,14.80537 -6.99409,31.78224 -14.91992,48.91406"
        transform="matrix(0.26458333,0,0,0.26458333,138.2844,-46.428407)"
        id="path4638"
@@ -162,55 +161,55 @@
        id="g4947">
       <text
          id="text4643"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.41111112px;line-height:125%;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif';text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.41111px;line-height:125%;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif';text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
          xml:space="preserve"><textPath
            id="textPath4645"
            xlink:href="#path16412"><tspan
-   id="tspan4641"
-   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.41111112px;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif';stroke-width:0.26458332px">      Charmeur</tspan></textPath></text>
+             id="tspan4641"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.41111px;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif';stroke-width:0.264583px">      Charmeur</tspan></textPath></text>
       <text
          id="text4590"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.17499995px;line-height:125%;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif';text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;line-height:125%;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif';text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
          xml:space="preserve"><textPath
            id="textPath4597"
            xlink:href="#path4595"><tspan
-   dx="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1.5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4"
-   id="tspan4588"
-   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.17499995px;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif';stroke-width:0.26458332px">Chat alors ! Du Cheshire à Nabeshima, ta paluche si choutte a la chance d’arracher tout le chic pour te faire chouchouter. Et tes hochements et ta démarche chaloupée qui déclenche l’enchantement des greluches sur Internet est une déchéance. Et les chevaliers-chanoines Templiers ne lâchèrent leur chasteté et chauffèrent sur le bûché que pour avoir péché en léchant ton dérche. Mais perché sur les chaumes et les charpentes chaudes tu crache sur les marcheurs enchantés qui t’achalandent. Chut. </tspan></textPath></text>
+             dx="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1.5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4"
+             id="tspan4588"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif';stroke-width:0.264583px">Chat alors ! Du Cheshire à Nabeshima, ta paluche si choutte a la chance d’arracher tout le chic pour te faire chouchouter. Et tes hochements et ta démarche chaloupée qui déclenche l’enchantement des greluches sur Internet est une déchéance. Et les chevaliers-chanoines Templiers ne lâchèrent leur chasteté et chauffèrent sur le bûché que pour avoir péché en léchant ton dérche. Mais perché sur les chaumes et les charpentes chaudes tu craches sur les marcheurs enchantés qui t’achalandent. Chut. </tspan></textPath></text>
       <text
          id="text4650"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.41111112px;line-height:125%;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif';text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.41111px;line-height:125%;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif';text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
          xml:space="preserve"><textPath
            id="textPath4657"
            xlink:href="#path4655"><tspan
-   id="tspan4648"
-   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.41111112px;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif';stroke-width:0.26458332px">Tu marche avec achèvement</tspan></textPath></text>
+             id="tspan4648"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.41111px;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif';stroke-width:0.264583px">Tu marche avec achèvement</tspan></textPath></text>
       <text
          id="text4662"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.41111112px;line-height:125%;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif';text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.41111px;line-height:125%;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif';text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
          xml:space="preserve"><textPath
            id="textPath4664"
            xlink:href="#path16408"><tspan
-   id="tspan4660"
-   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.41111112px;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif';stroke-width:0.26458332px">Chargé de richesses fraiches</tspan></textPath></text>
+             id="tspan4660"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.41111px;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif';stroke-width:0.264583px">Chargé de richesses fraiches</tspan></textPath></text>
       <text
          y="-0.11827689"
          x="1.0447793"
          id="text4669"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.41111112px;line-height:125%;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif';text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.41111px;line-height:125%;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif';text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
          xml:space="preserve"><textPath
            id="textPath4676"
            xlink:href="#path4674"><tspan
-   id="tspan4667"
-   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.41111112px;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif';stroke-width:0.26458332px">Franchement, tu t’en fiche ?</tspan></textPath></text>
+             id="tspan4667"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.41111px;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif';stroke-width:0.264583px">Franchement, tu t’en fiche ?</tspan></textPath></text>
       <text
          id="text4681"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.17499995px;line-height:125%;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif';text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;line-height:125%;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif';text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
          xml:space="preserve"><textPath
            id="textPath4683"
            xlink:href="#path4638"><tspan
-   id="tspan4679"
-   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.17499995px;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif';stroke-width:0.26458332px">    Méchant et changeant tu chagrine les souris</tspan></textPath></text>
+             id="tspan4679"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;font-family:'CMU Serif';-inkscape-font-specification:'CMU Serif';stroke-width:0.264583px">    Méchant et changeant tu chagrine les souris</tspan></textPath></text>
     </g>
   </g>
 </svg>
