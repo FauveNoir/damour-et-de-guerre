@@ -101,6 +101,8 @@ while [ $page -lt $INTERIORNUMBEROFPAGES ] ; do
 		(( last=$LASTPAGEOFCURRENTBOOKLET-$BOOKLETCURSOR ))
 		(( penultimate=$last-1 ))
 
+		#   Folio repartition:
+		#
 		#   Recto                   Verso
 		#   +--------+--------+     +--------+--------+
 		#   |        |        |     |        |        |
