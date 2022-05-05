@@ -3,7 +3,7 @@
 ########################################################################
 # Variables primordiales                                               #
 ########################################################################
-NAME          = damouretdeguerre# # Le nom du projet, cette variable sera       #
+NAME          = damour-et-de-guerre# # Le nom du projet, cette variable sera       #
                          # placée à la racine du nom de fichier de     #
                          # sortie                                      #
 ########################################################################
@@ -168,8 +168,12 @@ archive:
 	tar --gzip --create --verbose --file ${NAME}.tar.gz `ls | grep --line-regexp --file=archivedfiles | tr '\n' ' '` # N’archiver que les fichiers déffinits dans la variable `$ARCHIVED`.
 
 clean:
-	for f in `ls | grep --extended-regexp  "(^${NAME}(-Ed\.-(sav|com)|)((-agressif|)(-imprim|)(-NB|))(\.(aux|bbl|blg|glg|glo|gls|ist|log|out|run\.xml|idx|lof|toc)|-blx\.bib)|*\.tex\.project\.vim)"` ; do echo Suppression de $$f ; rm $$f ; done ;#
-	for f in `ls | grep --extended-regexp  ".*(\~|\.orig)"` ; do echo Suppression de $$f ; rm $$f ; done ;#
+	echo "* Fichiers intermédiaires principaux" ;#
+	for f in `ls | grep --extended-regexp  "(^${NAME}(-Ed\.-(sav|com)|)((-agressif|)(-imprim|)(-NB|))(\.(aux|bbl|blg|glg|glo|gls|ist|log|out|run\.xml|idx|lof|toc|ind|ilg)|-blx\.bib)|*\.tex\.project\.vim)"` ; do echo Suppression de $$f ; rm $$f ; done ; #
+	echo "* Fichiers intermédiaires des indexes" #
+	for f in `ls | grep --extended-regexp "(metric|strophy|rhymes|index-config)\.(idx|ilg|ind)"` ; do echo $$f ; rm $$f ; done #
+	echo "* Fichiers de sauvegardes créés par les éditeurs de texte" #
+	for f in `ls | grep --extended-regexp  ".*(\~|\.orig)"` ; do echo Suppression de $$f ; rm $$f ; done ;
 
 mrproper:
 	make clean;#
