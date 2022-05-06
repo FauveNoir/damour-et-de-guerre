@@ -653,62 +653,7 @@ H I \textbf{E} R \phantom{,}S\phantom{,}
 
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \pagestyle{empty}%
-%  \clearpage%
 
-  \newgeometry{left=1cm, right=1cm, top=25mm, bottom=0mm}%
-  \pagecolor{creme}%
-  \color{noir}%
-  \center%
-  \renewcommand\currentpoemtitle{Quatrième de couverture}%
-  \index{Artistes!René Magritte}
-
-
-  \includegraphics[height=8cm]{chat-de-sable.pdf}
-
-  \vskip 0.65cm
-
-  {
-  \begin{minipage}[t]{0.6\textwidth}%
-  \begin{justify}
-  \fontsize{10pt}{10pt}\selectfont{}%
-  \lettrine[lines=3]{\digobro{}\color{rouge}M}{agritte} n’aurait pas mieux dit. \enquote{{\color{rouge}Ceci n’est pas une quatrième de couverture}} artifice que les Anglais désignent de l’écœurant nom de \xenism{blurb}, on y entendrait presque l’onomatopée du vomissement tant la luette racle le fond de la gorge. Et encore… la chose demeure trop joliment dite.
-%
-%Quelle étrangeté d’un monde céphalopode que les premières pages que l’on ai lu d’un livre en soient les dernières. À toutes ces absurdités, nous nous sommes refusé d’être les complices.
-%
-Ce serait alors gâter la beauté que nous avons voulu mettre dans ce livre que de le doter d’une pareille ignominie qui prend le lecteur de haut et l’enjoint à faire sien un point de vue. Et pourquoi d’ailleurs le lester d’une quatrième de couverture lorsque vous pourriez le feuilleter et en lire des extraits dès à présent\ironie
-  \end{justify}
-  \end{minipage}%
-  }
- 
-  \begin{textblock*}{3cm}(11.8cm,18.8cm) 
-    \StrMid{\price}{1}{4}[\country]
-    \newcommand\pricenaturalpart{\StrBefore{\price}{,}}
-    \newcommand\pricedecimalpart{\StrBehind{\price}{,}}
-    {
-    \color{rouge}%
-    %
-    %
-    \addtolength{\tabcolsep}{-7pt}
-    \begin{tabular}{rl}
-      {\fontsize{0.4cm}{1em}\selectfont\color{noir}8,00\,€} \\
-      \multirow{2}{*}{\fontsize{1.8cm}{1em}\selectfont\pricenaturalpart} &\fontsize{0.6cm}{1em}\selectfont,\pricedecimalpart \\
-                                                                         &\phantom{{\fontsize{0.6cm}{1em}\selectfont,}}\fontsize{0.8cm}{1em}\selectfont \MADsymbol
-    \end{tabular}
-    }
-  \end{textblock*}
-
-
-  \begin{textblock*}{\paperwidth}(0.1em,17.6cm) 
-    \color{rouge}%
-    \begin{pspicture}(3.5,1.2in)
-      \psbarcode{0-00000-000}{includetext textcolor=C2302A barcolor=C2302A textfont="Liberation Sans" isbntextfont="Anonymous Pro" height=0.5}{isbn}
-    \end{pspicture}
-  \end{textblock*}
-
-
-\vfill\null
-
-
+\input{4e-de-couverture.tex}            
 
 \end{document}

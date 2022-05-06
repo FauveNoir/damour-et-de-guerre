@@ -139,7 +139,7 @@ ifeq ($(SCHOLARLY),true) # Le bloc suivant nâ€™est actif que pour les projets dÃ
 	${FULLCOMPIL}
 endif
 
-simplecomplie:
+simplecompile:
 	${COMPIL}
 
 historic:
