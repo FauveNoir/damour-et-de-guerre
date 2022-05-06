@@ -50,9 +50,13 @@
     {\fontsize{16}{0}\selectfont \color{noir}{\oldstylenums{2022}}}
 
   \end{center}
-  \afterpage{\pagecolor{white}}
   \restoregeometry
   \end{titlepage}
+  \pagecolor{creme}
+  \afterpage{
+    \pagecolor{creme}
+    \afterpage{\pagecolor{white}}
+  }
 }
 %\def\genre#1{\def\@genre{#1}}
 %\def\subtitle#1{\def\@subtitle{#1}}
