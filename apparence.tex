@@ -1,33 +1,3 @@
-%% Redéfinition de \maketitle pour y ajouter le genre littéraire
-%\makeatletter
-%\def\maketitle{
-%  \begin{titlepage}
-%  \newgeometry{right=1.5in,left=1.5in}
-%  \begin{center}
-%    {\large\uppercase{Grande œuvre}}
-%    \null\vfill
-%    {\Large \@author}
-%    \vskip 1cm
-%    {\LARGE \@title}
-%    \vskip 0.5cm
-%    {\large{\@genre}}
-%    \vskip 0.5cm
-%    {\Large \@date}
-%  \vfill\null
-%
-%    \scholarlyversion{{\large Édition savante}
-%
-%    \footnotesize{Avec préface, notes de bas de page, \xenism{dramatis personæ}, bibliographie, et glossaire.}}%
-%  \commonversion{Édition commune}
-%  \end{center}
-%  \restoregeometry
-%  \end{titlepage}
-%}
-%\def\genre#1{\def\@genre{#1}}
-%\def\subtitle#1{\def\@subtitle{#1}}
-%\makeatother
-
-
 
 \makeatletter
 \def\maketitle{
