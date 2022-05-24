@@ -5,6 +5,10 @@
 %% Chargement des extensions primordiales.
 \RequirePackage{fontspec} % Utilisation de XeTeX.
 %\RequirePackage[latin,russian,greek,french,francais]{babel} % Le Français est la langue principale.
+\RequirePackage{ragged2e}
+\RequirePackage{pstricks}
+\let\clipbox\relax
+
 \RequirePackage{polyglossia}
 \RequirePackage{xunicode}
 \RequirePackage{fontenc}
@@ -119,7 +123,6 @@
 %}
 
 % Déffinitions de Polyglossia
-\setdefaultlanguage{french}
 %\setotherlanguages{greek,russian,arabic}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
